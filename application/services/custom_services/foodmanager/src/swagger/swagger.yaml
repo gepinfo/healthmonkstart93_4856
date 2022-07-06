@@ -1,0 +1,247 @@
+---
+openapi: 3.0.0
+info:
+   version: 1.3.0
+   title: healthmonkstart93 open api specification
+   description: foodmanager API
+   termsOfService: http://api_url/terms/
+   contact:
+      name: ContactName
+      email: hello@wolox.co
+      url: https://www.wolox.com.ar/
+   license:
+      name: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+   - url: http://localhost:8015
+     description: foodmanager
+tags:
+- name: food
+  description: something you eat or drink
+- name: nutrient
+  description: food nutritional data
+- name: dish
+  description: a combination of foods
+- name: meal
+  description: a list of dishes that make up a meal
+paths:
+   "/food/{id}":
+      delete:
+         tags:
+         -  food
+         description: GpDelete
+         parameters:
+         -  in: "path"
+            description: GpDelete
+            name: id
+            required: true
+            schema:
+               type: "string"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+   "/food/get/search":
+      get:
+         tags:
+         -  food
+         description: GpSearch
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+   "/food/get/update":
+      put:
+         tags:
+         -  food
+         description: GpSearchForUpdate
+         requestBody:
+            content:
+               application/json:
+                  schema:
+                     $ref: "#/components/schemas/food"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+   "/food":
+      put:
+         tags:
+         -  food
+         description: GpUpdate
+         requestBody:
+            content:
+               application/json:
+                  schema:
+                     $ref: "#/components/schemas/food"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+      get:
+         tags:
+         -  food
+         description: GpGetAllValues
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+      post:
+         tags:
+         -  food
+         description: GpCreate
+         requestBody:
+            content:
+               application/json:
+                  schema:
+                     $ref: "#/components/schemas/food"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+components:
+   schemas:
+      food:
+         type: object
+         properties:
+            name:
+               type: "string"
+               description: Description
+            description:
+               type: "string"
+               description: Description
+            kcal:
+               type: "number"
+               description: Description
+            carbohydrates:
+               type: "number"
+               description: Description
+            fats:
+               type: "number"
+               description: Description
+            protein:
+               type: "number"
+               description: Description
+            portion:
+               type: "string"
+               description: Description
+            portion_type:
+               type: "string"
+               description: Description
+            nutrients:
+               type: "string"
+               description: list of nutrients
+            tags:
+               type: "string"
+               description: list of tags
+      nutrient:
+         type: object
+         properties:
+            name:
+               type: "string"
+               description: Description
+            description:
+               type: "string"
+               description: Description
+            portion:
+               type: "number"
+               description: Description
+            portion_type:
+               type: "string"
+               description: Description
+            tags:
+               type: "string"
+               description: list of tags
+      dish:
+         type: object
+         properties:
+            name:
+               type: "string"
+               description: Description
+            description:
+               type: "string"
+               description: Description
+            kcal:
+               type: "number"
+               description: Description
+            carbohydrates:
+               type: "number"
+               description: Description
+            fats:
+               type: "number"
+               description: Description
+            protein:
+               type: "number"
+               description: Description
+            recepie:
+               type: "string"
+               description: Description
+            food_picture:
+               type: "string"
+               description: Description
+            foods:
+               type: "string"
+               description: list of foods
+            tags:
+               type: "string"
+               description: list of tags
+      meal:
+         type: object
+         properties:
+            name:
+               type: "string"
+               description: Description
+            description:
+               type: "string"
+               description: Description
+            kcal:
+               type: "number"
+               description: Description
+            carbohydrates:
+               type: "number"
+               description: Description
+            fats:
+               type: "number"
+               description: Description
+            protein:
+               type: "number"
+               description: Description
+            dishes:
+               type: "string"
+               description: list of dishes
+            notes:
+               type: "string"
+               description: Description
+            tags:
+               type: "string"
+               description: list of tags
